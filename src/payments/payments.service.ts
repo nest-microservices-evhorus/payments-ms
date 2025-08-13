@@ -62,7 +62,9 @@ export class PaymentsService {
     } catch (err) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       console.log(`⚠️  Webhook signature verification failed.`, err.message);
-      return res.sendStatus(400);
+      return res
+        .sendStatus(400)
+        .json({ message: 'Webhook Error: no webhook payload was provided' });
     }
 
     switch (event.type) {
